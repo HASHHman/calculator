@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Calculator</title>
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
   <link href="style.css" rel="stylesheet">
 </head>
 
@@ -13,37 +13,36 @@
   <div id="container" class="container">
     <div id="calculator">
       <div id="display">
-        <p></p>
+          <span id="display-span"></span>
       </div>
       <div id="buttons-container" class="buttons-container">
-        <ul class="buttons-list">
+        <ul class="buttons-list" id="buttons-list">
           <li>
             <button>Clear</button>
             <button>Back</button>
-            <button>+</button>
-            <button>-</button>
+            <button class="operator">+</button>
+            <button class="operator">-</button>
           </li>
           <li>
-            <button>7</button>
-            <button>8</button>
-            <button>9</button>
-            <button>*</button>
+            <button class="number">7</button>
+            <button class="number">8</button>
+            <button class="number">9</button>
+            <button class="operator">*</button>
           </li>
           <li>
-            <button>4</button>
-            <button>5</button>
-            <button>6</button>
-            <button>/</button>
+            <button class="number">4</button>
+            <button class="number">5</button>
+            <button class="number">6</button>
+            <button class="operator">/</button>
           </li>
           <li>
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
-            <button>=</button>
+            <button class="number">1</button>
+            <button class="number">2</button>
+            <button class="number">3</button>
+            <button id="equals">=</button>
           </li>
           <li>
-            <button>0</button>
-            <button>.</button>
+            <button class="number">0</button>
           </li>
         </ul>
       </div>
