@@ -13,13 +13,13 @@
   <div id="container" class="container">
     <div id="calculator">
       <div id="display">
-          <span id="display-span"></span>
+          <span id="display-span">0</span>
       </div>
       <div id="buttons-container" class="buttons-container">
         <ul class="buttons-list" id="buttons-list">
           <li>
-            <button>Clear</button>
-            <button>Back</button>
+            <button id="clear">Clear</button>
+            <button id="back">Back</button>
             <button class="operator">+</button>
             <button class="operator">-</button>
           </li>
@@ -39,10 +39,11 @@
             <button class="number">1</button>
             <button class="number">2</button>
             <button class="number">3</button>
-            <button id="equals">=</button>
+            <button id="equals" class="operator">=</button>
           </li>
           <li>
             <button class="number">0</button>
+            <button id="dot">.</button>
           </li>
         </ul>
       </div>

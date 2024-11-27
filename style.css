@@ -51,3 +51,8 @@ button {
   justify-content: space-between;
   width: 250px;
 }
+
+button:hover {
+  background: #424548;
+  border-color: #424548;
+}
