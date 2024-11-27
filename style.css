@@ -41,6 +41,13 @@ button {
   padding: 5px;
 }
 
+#display-span {
+  direction: rtl;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
 .buttons-list {
   display: flex;
   flex-wrap: wrap;

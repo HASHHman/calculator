@@ -57,10 +57,13 @@ function populate() {
 	}
 }
 
-buttonsList.addEventListener("click", (event) => {
-	const target = event.target;
-	if (target.classList.contains("operator")) {
-		if (target.id === "equals") {
+function processEvent(event) {
+  const input = event.type == "click" ? event.target.textContent : event.key;
+  const operators = ["+", "-", "*", "/", "=", "Enter"];
+  console.log(input);
+  
+	if (operators.includes(input)) {
+		if (input === "=" || input === "Enter") {
 			if (!(!firstNum || !operator || !secondNum)) {
 				firstNum = operate(firstNum, secondNum, operator);
 				operator = "";
@@ -68,26 +71,26 @@ buttonsList.addEventListener("click", (event) => {
 			}
 		} else if (!!operator) {
 			firstNum = operate(firstNum, secondNum, operator);
-			operator = target.textContent;
+			operator = input;
 			secondNum = 0;
 		} else {
-			operator = target.textContent;
+			operator = input;
 		}
-	} else if (target.classList.contains("number")) {
+	} else if (0 <= parseInt(input)) {
 		if (!!operator) {
-			if (!(secondNum == 0)) {
-				secondNum += target.textContent;
+			if (secondNum === "0." || !(secondNum == 0)) {
+				secondNum += input;
 			} else {
-				secondNum = target.textContent;
+				secondNum = "" + input;
 			}
 		} else {
-			if (!(firstNum == 0)) {
-				firstNum += target.textContent;
+			if (firstNum === "0." || !(firstNum == 0 )) {
+				firstNum += input;
 			} else {
-				firstNum = target.textContent;
+				firstNum = "" + input;
 			}
 		}
-	} else if (target.id === "dot") {
+	} else if (input === ".") {
 		if (!!secondNum) {
 			if (!secondNum.includes(".")) {
 				secondNum += ".";
@@ -101,11 +104,11 @@ buttonsList.addEventListener("click", (event) => {
 		} else {
 			firstNum = "0.";
 		}
-	} else if (target.id === "clear") {
+	} else if (input === "Clear" || input === "Delete") {
 		firstNum = 0;
 		secondNum = 0;
 		operator = "";
-	} else if (target.id === "back") {
+	} else if (input === "Back" || input === "Backspace") {
 		if (!!secondNum) {
 			secondNum = secondNum.slice(0, -1);
 		} else if (!!operator) {
@@ -116,4 +119,8 @@ buttonsList.addEventListener("click", (event) => {
 	}
 
 	populate();
-});
+}
+
+buttonsList.addEventListener("click", processEvent);
+
+document.addEventListener("keydown", processEvent);
