@@ -43,6 +43,20 @@ function operate(firstNum, secondNum, operator) {
 	}
 }
 
+function populate() {
+	if (!!errorText) {
+		document.querySelector("#display-span").textContent = errorText;
+		errorText = "";
+	} else if (!!secondNum) {
+		document.querySelector("#display-span").textContent =
+			firstNum + operator + secondNum;
+	} else if (!!operator) {
+		document.querySelector("#display-span").textContent = firstNum + operator;
+	} else {
+		document.querySelector("#display-span").textContent = firstNum;
+	}
+}
+
 buttonsList.addEventListener("click", (event) => {
 	const target = event.target;
 	if (target.classList.contains("operator")) {
@@ -74,20 +88,20 @@ buttonsList.addEventListener("click", (event) => {
 			}
 		}
 	} else if (target.id === "dot") {
-    if (!!secondNum) {
-      if (!secondNum.includes(".")) {
-        secondNum += ".";
-      }
-    } else if (!secondNum && !!operator) {
-      secondNum = "0.";
-    } else if (!!firstNum) {
-      if (!firstNum.includes(".")) {
-        firstNum += ".";
-      }
-    } else {
-      firstNum = "0."
-    }
-  }else if (target.id === "clear") {
+		if (!!secondNum) {
+			if (!secondNum.includes(".")) {
+				secondNum += ".";
+			}
+		} else if (!secondNum && !!operator) {
+			secondNum = "0.";
+		} else if (!!firstNum) {
+			if (!firstNum.includes(".")) {
+				firstNum += ".";
+			}
+		} else {
+			firstNum = "0.";
+		}
+	} else if (target.id === "clear") {
 		firstNum = 0;
 		secondNum = 0;
 		operator = "";
@@ -101,15 +115,5 @@ buttonsList.addEventListener("click", (event) => {
 		}
 	}
 
-	if (!!errorText) {
-		document.querySelector("#display-span").textContent = errorText;
-		errorText = "";
-	} else if (!!secondNum) {
-		document.querySelector("#display-span").textContent =
-			firstNum + operator + secondNum;
-	} else if (!!operator) {
-		document.querySelector("#display-span").textContent = firstNum + operator;
-	} else {
-		document.querySelector("#display-span").textContent = firstNum;
-	}
+	populate();
 });
